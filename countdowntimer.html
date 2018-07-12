@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	  <title>Coundowntimer</title>
+    <script>
+	   document.write("<center>");
+    </script>
+    <style>
+    	#textelement {
+    		margin: 5px;
+    		padding: 10px;
+        box-sizing: border-box;
+	    }
+      input {
+        padding: 7px;
+        margin: 0px;
+        display: block;
+      }
+      #button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 0px;  
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Countdowntimer</h1>
+    <div id = "textelement">
+      Year:<input type = "text" id = "year" placeholder = "Year"><br/>
+      Month:<input type = "text" id = "month" placeholder = "Month"><br/>
+      Date:<input type = "text" id = "date" placeholder = "Only Date"><br/>
+      Hour:<input type = "text" id = "hour" placeholder = "24 hours format"><br/>
+      Minute:<input type = "text" id = "min" placeholder = "Min"><br/>
+      <input type = "button" id = "button" value = "Start Coundown" onclick = "settimer();">
+      <p id = "timer_value"></p>
+    </div>
+
+    <script type="text/javascript">
+      var timer;
+      function settimer() {
+        clearInterval(timer);
+
+        var year = document.getElementById("year").value;  
+        var month = document.getElementById("month").value;
+        var date = document.getElementById("date").value;
+        var hour = document.getElementById("hour").value;
+
+        if(hour == "") 
+     	    hour=0;
+          var min = document.getElementById("min").value;
+
+        if(min == "")
+          min=0;
+
+        var timeremain = month+"/"+date+"/"+year+" "+hour+":"+min;
+        var end = new Date(timeremain);
+        console.log('end', end);
+        var now = new Date();
+        var second = 1000; 
+        var minute = second * 60;
+        var hour = minute * 60;
+        var date = hour * 24;
+
+        function showtimer() {
+          var now = new Date();
+          var time = end - now; 
+
+          if(time < 0) {
+            clearInterval(timer);
+            document.getElementById("timer_value").innerHTML = 'Expired!';
+            return;
+          }
+            var dates = Math.floor(time / date);
+            var hours = Math.floor((time % date) / hour);
+            var minutes = Math.floor((time % hour) / minute);
+            var seconds = Math.floor((time % minute) / second); 
+         
+            document.getElementById("timer_value").innerHTML = dates + 'D: ';
+            document.getElementById("timer_value").innerHTML += hours + 'H: ';
+            document.getElementById("timer_value").innerHTML += minutes + 'M: ';
+            document.getElementById("timer_value").innerHTML += seconds + 'S:';
+        }
+            timer = setInterval(showtimer, 1000);
+      }	 
+    </script>
+  </body>
+</html>

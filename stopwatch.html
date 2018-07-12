@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+      <title>Stopwatch</title>
+      <style>
+        #table {
+          border: solid;
+          width: 400px;
+          height: 160px;
+        }
+        #display-area { 
+          background: black;
+          color: white;
+          font-size: 40pt;
+        }
+        #area {
+          padding: 10px;
+          margin: 10px;
+        }
+        #start {
+          background-color: green;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+        }
+        #stop {
+          background-color: red; 
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+        }
+        #reset {
+          background-color: blue;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+        }
+
+      </style>
+      <script>
+        document.write("<center>")
+      </script>
+  </head>
+  <body>
+    <h1>Stopwatch</h1>
+    <div id="table">
+      <div id="area">
+        <output id="display-area">00:00:00.000</output>
+      </div>
+      <div>
+        <button id = "start" onClick = "start()">Start</button>
+        <button id = "stop" onClick = "stop()">Stop</button>
+        <button id = "reset" onClick = "reset()">Reset</button>
+      </div>
+    </div>
+    <script>
+      var timeStart = null;
+      var timeStopped = null;
+      var stoppedDuration = 0;
+      var started = null;
+
+      function start() {
+        if (timeStart === null) {
+          timeStart = new Date();
+        }
+
+        if (timeStopped !== null) {
+          stoppedDuration += (new Date() - timeStopped);
+        }
+
+          started = setInterval(clockRunning, 10);    
+      }
+
+      function stop() {
+        timeStopped = new Date();
+        clearInterval(started);
+      }
+
+      function reset() {
+        clearInterval(started);
+        stoppedDuration = 0;
+        timeStart = null;
+        timeStopped = null;
+        document.getElementById("display-area").innerHTML = "00:00:00.000";
+      }
+
+      function clockRunning() {
+        var currentTime = new Date()
+        var timeElapsed = new Date(currentTime - timeStart - stoppedDuration)
+        var hour = timeElapsed.getUTCHours()
+        var min = timeElapsed.getUTCMinutes()
+        var sec = timeElapsed.getUTCSeconds()
+        var ms = timeElapsed.getUTCMilliseconds();
+
+        document.getElementById("display-area").innerHTML = 
+        (hour > 9 ? hour : "0" + hour) + ":" + 
+        (min > 9 ? min : "0" + min) + ":" + 
+        (sec > 9 ? sec : "0" + sec) + "." + 
+        (ms > 99 ? ms : ms > 9 ? "0" + ms : "00" + ms);
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>  
+  </head>
+  <body>
+    <script type="text/javascript">
+      var str = "ABCDEFG";
+      var row = 7;
+      var number = row-1;
+      document.write("<center>")
+      
+        for (var i = 1; i <= 7; i++) {
+
+          for (var j = 1; j < row; j++) {
+            document.write("&nbsp");
+          }
+      
+          for (var j = 1; j <= i; j++) {
+            var ch = str.charAt(i-1);
+            if(j==1 || j==i) {
+            document.write(ch+" ");
+            }
+            else {
+            document.write("&nbsp");
+            document.write("&nbsp");
+            }
+            document.write("&nbsp");
+            document.write("&nbsp");
+          }
+            row--;
+            document.write("<br/>");    
+        }
+
+        row = 1;
+       
+        for (var i = number; i >= 1; i--) {
+
+          for (var j = 1; j <= row; j++) {
+            document.write("&nbsp");
+          }
+
+          for (var j = 1; j <= i; j++) {
+            var ch = str.charAt(i-1);  
+            if(j==1 || j==i) {
+             document.write(ch+" ");
+            }
+            else {
+             document.write("&nbsp");
+             document.write("&nbsp");
+            }
+             document.write("&nbsp");
+             document.write("&nbsp"); 
+          }
+            row++;
+             document.write("<br/>"); 
+        }
+    </script>
+  </body>
+</html>

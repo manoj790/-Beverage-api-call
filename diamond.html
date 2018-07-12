@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var num = 5;
+      var number = num-1;
+      document.write("<center>");
+      
+        for (var i = 1; i <= 5; i++) {
+
+          for (var j = 1; j < num; j++) {
+            document.write("&nbsp");
+          }
+          for (var j = 1; j <= i; j++) {
+            document.write(j+" ");
+            document.write("&nbsp");
+          }
+          num--;
+          document.write("<br/>");  
+        }
+
+        num = 1;
+       
+        for (var i = number; i >= 1; i--) {
+
+          for (var j = 1; j <= num; j++) {
+            document.write("&nbsp");
+          }
+          for (var j = 1; j <= i; j++) {  
+            document.write(j+" ");
+            document.write("&nbsp");
+          }
+          num++;
+          document.write("<br/>");  
+        }
+    </script>
+  </body>
+</html>
